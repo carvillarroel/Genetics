@@ -1,8 +1,8 @@
-### Pipeline for genetic analysis from multisample VCF ###
-# Working with VCF #
+# Pipeline for genetic analysis from multisample VCF #
+## Working with VCF ##
 
 First vcftools is used to filter SNPs, individuals, etc.
-For the first analyisis we will use SNPs that were called in all individuals, and only biallelic sites  
+For the first analyisis we will use SNPs that were called in all individuals, and we only retain biallelic sites  
 
 ```bash
 conda install vcftools perl-vcftools-vcf
@@ -10,7 +10,7 @@ vcftools --max-missing 1 --max-alleles 2 --vcf FILE.vcf --recode --recode-INFO-a
 ```
 
 
-# Importing VCF into R #
+## Importing VCF into R ##
 
 In R we will use different packages to perform an array of genetic analysis. First we will import the VCF with the package vcfR, and then transform it to a genlight object (a simplified version of the VCF with only allele information as binary code)
 
@@ -31,6 +31,6 @@ tree<-aboot(x,tree = "nj", distance = bitwise.dist, sample = 1000, showtree = F,
 
 write.nexus(tree,file="tree.nexus")
 ```
-This phylogenetic tree can be viewed and modified in the using iTol website. However we will generate a more robust phylogenetic tree later.
+This phylogenetic tree can be viewed and modified the using iTol website for example. However we will generate a more robust phylogenetic tree later.
 
 
