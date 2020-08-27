@@ -31,7 +31,7 @@ tree<-aboot(x,tree = "nj", distance = bitwise.dist, sample = 1000, showtree = F,
 
 write.nexus(tree,file="tree.nexus")
 ```
-This phylogenetic tree can be viewed and modified the using iTol website for example. However we will generate a more robust phylogenetic tree using Maximun Likehood method implemented in the program IQTREE.
+This phylogenetic tree can be viewed and modified using iTol website for example. However we will generate a more robust phylogenetic tree using Maximum Likehood method implemented in the program IQTREE.
 
 ```bash
 conda install iqtree
