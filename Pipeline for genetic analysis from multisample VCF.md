@@ -1,5 +1,6 @@
-# Pipeline for genetic analysis from multisample VCF #
-## Working with VCF ##
+# Genetic analyses from whole genome resequencing #
+## Phylogenetic tree and population structure
+### Working with VCF ###
 
 First vcftools is used to filter SNPs, individuals, etc.
 For the first analyisis we will use SNPs that were called in all individuals, and we only retain biallelic sites  
@@ -10,7 +11,7 @@ vcftools --max-missing 1 --max-alleles 2 --vcf FILE.vcf --recode --recode-INFO-a
 ```
 
 
-## Importing VCF into R ##
+### Importing VCF into R ###
 
 In R we will use different packages to perform an array of genetic analysis. First we will import the VCF with the package vcfR, and then transform it to a genlight object (a simplified version of the VCF with only allele information as binary code)
 
@@ -31,7 +32,7 @@ tree<-aboot(x,tree = "nj", distance = bitwise.dist, sample = 1000, showtree = F,
 
 write.nexus(tree,file="tree.nexus")
 ```
-This phylogenetic tree can be viewed and modified using iTol website for example. However we will generate a more robust phylogenetic tree using Maximum Likehood method implemented in the program IQTREE.
+This phylogenetic tree can be viewed and modified using iTol website for example. However we will generate a more robust phylogenetic tree using Maximum Likehood method implemented in the linux program IQTREE.
 
 ```bash
 conda install iqtree
@@ -43,13 +44,16 @@ iqtree -s OUTFILE.min4.recode.min4.phy.varsites.phy -st DNA -o 1105.1_Nahuelbuta
 ```
 The file OUTFILE.min4.recode.min4.phy.varsites.phy.contree is the ML phylogenetic tree that can also be viewed in iTol.
 
-## Exploring population structure ##
-First we use STRUCTURE to obtain populations from our dataset. Structure is recommended to work with a subset of SNPs (aprox 10k), which we can first obtain by filtering SNPs that are in linkage disequilibrium (LD) using the software PLINK.
-At this step we do not need an outgroup, so we can remove it using vcftools (preferentially using the unfiltered vcf)
+### Exploring population structure ###
+We use STRUCTURE to estimate the number of populations ocurring in our dataset. Structure is recommended to work with a subset of SNPs (~10k snps), which we can obtain by filtering out SNPs that are in linkage disequilibrium (LD) using the software PLINK.
+As for determining population structure we do not need an outgroup, we can remove it using vcftools (preferentially using the first unfiltered vcf).
+
+```bash
 Create a text file with the name of the individual to remove (remove.txt)
 vcftools --remove remove.txt --vcf FILE.vcf --recode --recode-INFO-all --non-ref-ac-any 1 --out onlyeub
+```
 
-Now to use PLINK, we first need to modify the VCF to give names to each SNP (requirement if we want to use the list that PLINK produces with the SNPs that are in LD)
+Now to use PLINK, we modify the VCF file to write names to each SNP (requirement if we want to use the list that PLINK produces with the SNPs that are in LD)
 We will use the following script available in gist:
 https://gist.github.com/janxkoci/25d495e6cb9f21d5ee4af3005fb3c77a#file-plink_pruning_prep-sh
 
@@ -63,7 +67,7 @@ plink --vcf onlyeub.recode_annot.vcf --double-id --allow-extra-chr --indep-pairw
 head onlyeub_ldfilter.prune.in
 ```
 
-Now we use this file to retain these positions from the vcf with vcftools. However we need to change the underscore character that is located prior to the SNP position to a tab character.
+Now we use this file to retain these positions from the vcf with vcftools. However we need to change the underscore character that is located prior to the SNP position to a tab character
 For example: CBS12357_Chr12_polished_838562 --> CBS12357_Chr12_polished 838562
 
 ```bash
@@ -151,7 +155,7 @@ The mainparams should look like this:
 
 We mainly need to change OUTFILE,INFILE,NUMINDS,NUMLOCI,MAXPOPS,BURNIN,NUMREPS to reflect our file and desired setup. Importantly, MAXPOPS is the number of populations to test, and we want to explore many values of MAXPOPS to later estimate the best number of populations that can explain our genetic data. Fortunately we do not need make a mainparams file for each different iteration of Structure we want to run, as the command line version can accept options that will override the mainparams file (but still needs this file to run!).
 Options that can be added in command line:
-
+```
 -m mainparams file
 -e extraparams file 
 -K MAXPOPS = number of populations to test
@@ -159,7 +163,7 @@ Options that can be added in command line:
 -N NUMINDS = total number of individuals in the file
 -i input file 
 -o output file
-
+```
 So first we check that everything is ok by doing a test run  (change the parameters to match your file!):
 
 ```bash
