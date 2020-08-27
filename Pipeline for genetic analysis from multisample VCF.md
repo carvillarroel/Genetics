@@ -51,7 +51,9 @@ vcftools --remove remove.txt --vcf FILE.vcf --recode --recode-INFO-all --non-ref
 
 Now to use PLINK, we first need to modify the VCF to give names to each SNP position (requirement if we want to use the file that PLINK produces with the SNPs that are in LD)
 We will use the following script made available in gist:
-<script src="https://gist.github.com/janxkoci/25d495e6cb9f21d5ee4af3005fb3c77a.js"></script>
+https://gist.github.com/janxkoci/25d495e6cb9f21d5ee4af3005fb3c77a.js
+
+
 
 
 
