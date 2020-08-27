@@ -43,6 +43,15 @@ iqtree -s OUTFILE.min4.recode.min4.phy.varsites.phy -st DNA -o 1105.1_Nahuelbuta
 ```
 The file OUTFILE.min4.recode.min4.phy.varsites.phy.contree is the ML phylogenetic tree that can also be viewed in iTol.
 
+## Exploring population structure ##
+First we use STRUCTURE to obtain populations from our dataset. Structure is recommended to work with a subset of SNPs (aprox 10k), which we can first obtain by filtering SNPs that are in linkage disequilibrium (LD) using the software PLINK.
+At this step we do not need an outgroup, so we can remove it using vcftools (preferentially using the unfiltered vcf)
+Create a text file with the name of the individual to remove (remove.txt)
+vcftools --remove remove.txt --vcf FILE.vcf --recode --recode-INFO-all --non-ref-ac-any 1 --out onlyeub
+
+Now to use PLINK, we first need to modify the VCF to give names to each SNP position (requirement if we want to use the file that PLINK produces with the SNPs that are in LD)
+We will use the following script made available in gist:
+<script src="https://gist.github.com/janxkoci/25d495e6cb9f21d5ee4af3005fb3c77a.js"></script>
 
 
 
