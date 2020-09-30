@@ -72,7 +72,7 @@ For example: CBS12357_Chr12_polished_838562 --> CBS12357_Chr12_polished 838562
 
 ```bash
 sed 's/polished_/polished\t/' onlyeub_ldfilter.prune.in > onlyeub_ldfilter.prune.in.vcftools
-vcftools --vcf onlyeub.recode.vcf --positions onlyeub_ldfilter.prune.in.vcftools --recode-INFO-all --out onlyeub_ldfilter
+vcftools --vcf onlyeub.recode.vcf --positions onlyeub_ldfilter.prune.in.vcftools --recode-INFO-all --recode --out onlyeub_ldfilter
 ```
 If we still have more than 20k SNPs, we can filter SNPs by distance using vcftools --thin option. Here we will filter out SNPs that are closer than 500 bp
 
