@@ -32,10 +32,10 @@ tree<-aboot(x,tree = "nj", distance = bitwise.dist, sample = 1000, showtree = F,
 
 write.nexus(tree,file="tree.nexus")
 ```
-This phylogenetic tree can be viewed and modified using iTol website for example. However we will generate a more robust phylogenetic tree using Maximum Likehood method implemented in the linux program IQTREE.
+This phylogenetic tree can be viewed and modified using iTol website for example. However we will generate a more robust phylogenetic tree using Maximum Likehood method implemented in the linux program IQTREE. First we transform the VCF file to phylip format using a custom python script developed by edgardomortiz, [vcf2phylip](https://github.com/edgardomortiz/vcf2phylip), and then we use it for IQTREE
 
 ```bash
-conda install iqtree
+conda install -c bioconda iqtree
 git clone https://github.com/edgardomortiz/vcf2phylip.git
 #First we transform the VCF file to phylip format using a custom python script developed by edgardomortiz, and then we use it for IQTREE
 python vcf2phylip -i OUTFILE.recode.vcf
