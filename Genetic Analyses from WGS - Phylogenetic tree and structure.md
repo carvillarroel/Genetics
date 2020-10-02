@@ -175,15 +175,15 @@ If structure runs without problems, we can cancel the test run to run structure 
 ```bash
 for m in {2..7}
    do
-   structure -m mainparams -p extraparams -k $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep1 &> log_K.${m}.rep1.txt&
+   structure -m mainparams -p extraparams -K $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep1 &> log_K.${m}.rep1.txt&
    sleep 10
-   structure -m mainparams -p extraparams -k $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep2 &> log_K.${m}.rep2.txt&
+   structure -m mainparams -p extraparams -K $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep2 &> log_K.${m}.rep2.txt&
    sleep 10
-   structure -m mainparams -p extraparams -k $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep3 &> log_K.${m}.rep3.txt&
+   structure -m mainparams -p extraparams -K $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep3 &> log_K.${m}.rep3.txt&
    sleep 10
-   structure -m mainparams -p extraparams -k $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep4 &> log_K.${m}.rep4.txt&
+   structure -m mainparams -p extraparams -K $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep4 &> log_K.${m}.rep4.txt&
    sleep 10
-   structure -m mainparams -p extraparams -k $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep5 &> log_K.${m}.rep5.txt
+   structure -m mainparams -p extraparams -K $m -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_K.${m}.rep5 &> log_K.${m}.rep5.txt
    sleep 10  
    done 
 done
