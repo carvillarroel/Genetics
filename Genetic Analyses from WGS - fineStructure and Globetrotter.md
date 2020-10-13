@@ -46,7 +46,7 @@ for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR ==
 ```bash
 for i in {1..16};do perl makeuniformrecfile.pl  chr{i}  chr{i}_rec;done
 ```
--Run chromopainter (v2) in mode ALLvsALL (all individuals will be painted with each other individual)
+- Run chromopainter (v2) in mode ALLvsALL (all individuals will be painted with each other individual)
 
 To run 8 processes:
 ```bash
@@ -63,11 +63,13 @@ for i in {15..16};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i
 Obs1: idfile is a tabulated file with the name of each strain and their corresponding population, and whether to include this individual in the calculation. Should have the same order that the VCF and PLINK files. e.g: CL1001.1<TAB>PB1<TAB>1
 
 Obs2: In this step it will be better to change the name of the individuals if they start with a number (eg. 1001.1_TDP change it to CL1001.1), as finestructure might give problems with names that start with numbers later
+
 Obs3: option -a 0 0 means ALL vs ALL mode
+
 **Obs4: FOR HAPLOIDS USE ADDITIONAL OPTION -j 1**
 
 
--	Run chromocombine to combine all chromopainter per chromosome outputs into a combined genome output (put all of them in a folder e.g. datos)
+- Run chromocombine to combine all chromopainter per chromosome outputs into a combined genome output (put all of them in a folder e.g. datos)
 ```bash
 ../../fs_4.0.1/fs_linux_glibc2.3 chromocombine -d datos
 ```
