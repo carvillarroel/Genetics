@@ -7,7 +7,7 @@ Programs:
 ```bash
 conda install snpsift plink
 wget https://people.maths.bris.ac.uk/~madjl/finestructure/fs_4.1.1.zip
-wget https://github.com/gusevlab/germline/raw/master/phasing_pipeline.tar.gz
+wget https://github.com/gusevlab/germline/raw/master/phasing_pipeline.tar.gz <- MAKE ALL inside folder
 wget https://faculty.washington.edu/browning/beagle/recent.versions/beagle_3.0.4_05May09.zip <- JUST NEED TO COPY BEAGLE.JAR TO THE PHASING PIPELINE FOLDER
 ```
 Steps
@@ -25,7 +25,7 @@ iterate for each chromosome
 PHASING (NOT NECESSARY FOR HAPLOIDS!)
 - Run script run.sh from the phasing_pipeline package for each PLINK file (IT NEEDS BEAGLE.jar IN THE RUN.SH FOLDER)
 ```bash
-for i in {1..16};do bash run.sh chr${i}.ped chr{i}.map chr{i};done
+for i in {1..16};do bash run.sh chr${i}.ped chr${i}.map chr${i};done
 ```
 - Convert phased files to chromopainter format
 ```bash
