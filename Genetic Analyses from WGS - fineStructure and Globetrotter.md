@@ -4,19 +4,23 @@ To run these three programs we need a phased SNP file.
 For this the phasing pipeline included in the program GERMLINE (1.5.3) was used, which uses BEAGLE version 3.0.4 (there are several new versions of BEAGLE but the output of these versions wont work with chromopainter) and PLINK to perform haplotype phasing
 
 Programs:
+```bash
 conda install snpsift plink
 wget https://people.maths.bris.ac.uk/~madjl/finestructure/fs_4.1.1.zip
 wget https://github.com/gusevlab/germline/blob/master/phasing_pipeline.tar.gz
 wget https://faculty.washington.edu/browning/beagle/recent.versions/beagle_3.0.4_05May09.zip <- JUST NEED TO COPY BEAGLE.JAR TO THE PHASING PIPELINE FOLDER
-
+```
 Steps
 
 1.- Split VCF file (105 eubayanus strains, no uvarum) by chromosome using Sift
-	SnpSift split alleub_f1.recode.vcf
+```bash
+SnpSift split alleub_f1.recode.vcf
 
 2.- Convert VCF files to PLINK .ped / .map format
-	plink --vcf alleub_f1.recode.CBS12357_Chr01_polished.vcf --recode12 --allow-extra-chr --double-id --geno 1 --out chr1
-	...iterate for each chromosome
+```bash
+plink --vcf alleub_f1.recode.CBS12357_Chr01_polished.vcf --recode12 --allow-extra-chr --double-id --geno 1 --out chr1
+
+iterate for each chromosome
 
 PHASING (NOT NECESSARY FOR HAPLOIDS!)
 3.- Run script run.sh from the phasing_pipeline package for each PLINK file (IT NEEDS BEAGLE.jar IN THE RUN.SH FOLDER)
