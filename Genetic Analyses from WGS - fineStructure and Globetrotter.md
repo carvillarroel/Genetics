@@ -1,4 +1,4 @@
-Chromopainter - fineSTRUCTURE - GLOBETHROTTER pipeline
+#Chromopainter - fineSTRUCTURE - GLOBETHROTTER pipeline
 
 To run these three programs we need a phased SNP file.  
 For this the phasing pipeline included in the program GERMLINE (1.5.3) was used, which uses BEAGLE version 3.0.4 (there are several new versions of BEAGLE but the output of these versions wont work with chromopainter) and PLINK to perform haplotype phasing
@@ -18,10 +18,9 @@ Steps
 	plink --vcf alleub_f1.recode.CBS12357_Chr01_polished.vcf --recode12 --allow-extra-chr --double-id --geno 1 --out chr1
 	...iterate for each chromosome
 
------------PHASING (NOT NECESSARY FOR HAPLOIDS!)----------
+PHASING (NOT NECESSARY FOR HAPLOIDS!)
 3.- Run script run.sh from the phasing_pipeline package for each PLINK file (IT NEEDS BEAGLE.jar IN THE RUN.SH FOLDER)
 	for i in {1..16};do bash run.sh chr${i}.ped chr{i}.map chr{i};done
-----------------------------------------------------------
 
 4.- Convert phased files to chromopainter format
 	for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr{i}.phased.map -o=chr{i}.chromopainter -f;done
