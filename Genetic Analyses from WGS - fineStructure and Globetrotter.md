@@ -15,21 +15,25 @@ Steps
 1.- Split VCF file (105 eubayanus strains, no uvarum) by chromosome using Sift
 ```bash
 SnpSift split alleub_f1.recode.vcf
-
+```
 2.- Convert VCF files to PLINK .ped / .map format
 ```bash
 plink --vcf alleub_f1.recode.CBS12357_Chr01_polished.vcf --recode12 --allow-extra-chr --double-id --geno 1 --out chr1
-
+```
 iterate for each chromosome
 
 PHASING (NOT NECESSARY FOR HAPLOIDS!)
 3.- Run script run.sh from the phasing_pipeline package for each PLINK file (IT NEEDS BEAGLE.jar IN THE RUN.SH FOLDER)
-	for i in {1..16};do bash run.sh chr${i}.ped chr{i}.map chr{i};done
+```bash
 
+for i in {1..16};do bash run.sh chr${i}.ped chr{i}.map chr{i};done
+```
 4.- Convert phased files to chromopainter format
-	for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr{i}.phased.map -o=chr{i}.chromopainter -f;done
+```bash
 
+for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr{i}.phased.map -o=chr{i}.chromopainter -f;done
 
+```
 
 ##FOR HAPLOIDS
 USE THIS SCRIPT TO CHANGE CHROMOPAINTER INPUT TO HAPLOID (Example here Lachancea with chromosomes names)
@@ -39,8 +43,10 @@ for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR ==
 
 
 5.- Create recombination file for each chromosome (edit line 47 in the perl script makeuniformrecfile.pl to give a constant value of 4/1,000,000 (0.000004)) which means that in all the following calculations we will use a constant recombination rate of 0.4 cM/Kb (which is the average in S. cerevisiae (Cubillos et al, 2011)). Iterate this perl script over the files created in step 5
-	for i in {1..16};do perl makeuniformrecfile.pl  chr{i}  chr{i}_rec;done
+```bash
 
+	for i in {1..16};do perl makeuniformrecfile.pl  chr{i}  chr{i}_rec;done
+```
 6.-	Run chromopainter (v2) in mode ALLvsALL (all individuals will be painted with each other individual)
 	To run 4 processes:
 		for i in {1..2};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
