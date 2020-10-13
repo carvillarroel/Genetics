@@ -73,13 +73,17 @@ Obs3: option -a 0 0 means ALL vs ALL mode
 ```bash
 ../../fs_4.0.1/fs_linux_glibc2.3 chromocombine -d datos
 ```
--	Run finestructure on the combined dataset 
-		../../fs_4.0.1/fs_linux_glibc2.3 finestructure  -x 100000 -y 100000 -z 1000 output.chunkcounts.out out.105eubs.mcmc.xml
-		Visualize result with finestructure GUI or...
-		Use finestructure R scripts:
-		Obs: To plot the results with finestructure R scripts, I had to rename the individuals to this format:
-		eg:	CL1001.1 to PBI1001 or CL210.1 to PBIII210
-		This is because the script developed by finestructure team is not finished and it is designed to work with individuals names that are in the format POPINDNUMBER (eg France1, France2, Yoruba1)
+-Run finestructure on the combined dataset 
+```bash
+../../fs_4.0.1/fs_linux_glibc2.3 finestructure  -x 100000 -y 100000 -z 1000 output.chunkcounts.out out.105eubs.mcmc.xml
+```
+Visualize result with finestructure GUI or...
+
+Use finestructure R scripts:
+Obs: To plot the results with finestructure R scripts, I had to rename the individuals to this format:	CL1001.1 to PBI1001 or CL210.1 to PBIII210
+
+This is because the script developed by finestructure team is not finished and it is designed to work with individuals names that are in the format POPINDNUMBER (eg France1, France2, Yoruba1)
+
 ```bash
 ../../fs_4.0.1/fs_linux_glibc2.3 finestructure  -x 100000 -y 100000 -z 1000 output.chunkcounts.out structure_result.xml
 ../../fs_4.0.1/fs_linux_glibc2.3 finestructure  -x 100000 -k 2 -m T -t 1000000 output.chunkcounts.out structure_result.xml structure_tree.out
