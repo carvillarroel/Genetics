@@ -60,7 +60,7 @@ for i in {11..12};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i
 for i in {13..14};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
 for i in {15..16};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
 ```
-Obs1: idfile is a tabulated file with the name of each strain and their corresponding population, and whether to include this individual in the calculation. Should have the same order that the VCF and PLINK files. e.g: CL1001.1<TAB>PB1<TAB>1
+Obs1: idfile is a tabulated file with the name of each strain and their corresponding population, and whether to include this individual in the calculation. Should have the same order that the VCF and PLINK files. e.g: CL1001.1 → PB1 → 1
 
 Obs2: In this step it will be better to change the name of the individuals if they start with a number (eg. 1001.1_TDP change it to CL1001.1), as finestructure might give problems with names that start with numbers later
 
