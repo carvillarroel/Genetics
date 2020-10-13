@@ -1,4 +1,4 @@
-#Chromopainter - fineSTRUCTURE - GLOBETHROTTER pipeline
+# Chromopainter - fineSTRUCTURE - GLOBETHROTTER pipeline
 
 To run these three programs we need a phased SNP file.  
 For this the phasing pipeline included in the program GERMLINE (1.5.3) was used, which uses BEAGLE version 3.0.4 (there are several new versions of BEAGLE but the output of these versions wont work with chromopainter) and PLINK to perform haplotype phasing
@@ -27,11 +27,11 @@ PHASING (NOT NECESSARY FOR HAPLOIDS!)
 
 
 
------------FOR HAPLOIDS-----------
+##FOR HAPLOIDS
 USE THIS SCRIPT TO CHANGE CHROMOPAINTER INPUT TO HAPLOID (Example here Lachancea with chromosomes names)
-
+```bash
 for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR == 1  { print $1 /2 }' chr_${i}.chromopainter; sed '2,3!d' chr_${i}.chromopainter;sed '1,3d' chr_${i}.chromopainter|sed  '0~2d')| cat > chr_${i}.chromopainter.haploid;done
-
+```
 
 
 5.- Create recombination file for each chromosome (edit line 47 in the perl script makeuniformrecfile.pl to give a constant value of 4/1,000,000 (0.000004)) which means that in all the following calculations we will use a constant recombination rate of 0.4 cM/Kb (which is the average in S. cerevisiae (Cubillos et al, 2011)). Iterate this perl script over the files created in step 5
