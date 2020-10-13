@@ -38,26 +38,28 @@ for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr{i}.
 ##FOR HAPLOIDS
 USE THIS SCRIPT TO CHANGE CHROMOPAINTER INPUT TO HAPLOID (Example here Lachancea with chromosomes names)
 ```bash
-for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR == 1  { print $1 /2 }' chr_${i}.chromopainter; sed '2,3!d' chr_${i}.chromopainter;sed '1,3d' chr_${i}.chromopainter|sed  '0~2d')| cat > chr_${i}.chromopainter.haploid;done
+for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR == 1  { print $1 /2 }' chr${i}.chromopainter; sed '2,3!d' chr${i}.chromopainter;sed '1,3d' chr${i}.chromopainter|sed  '0~2d')| cat > chr${i}.chromopainter.haploid;done
 ```
 
 
 5.- Create recombination file for each chromosome (edit line 47 in the perl script makeuniformrecfile.pl to give a constant value of 4/1,000,000 (0.000004)) which means that in all the following calculations we will use a constant recombination rate of 0.4 cM/Kb (which is the average in S. cerevisiae (Cubillos et al, 2011)). Iterate this perl script over the files created in step 5
 ```bash
 
-	for i in {1..16};do perl makeuniformrecfile.pl  chr{i}  chr{i}_rec;done
+for i in {1..16};do perl makeuniformrecfile.pl  chr{i}  chr{i}_rec;done
 ```
 6.-	Run chromopainter (v2) in mode ALLvsALL (all individuals will be painted with each other individual)
-	To run 4 processes:
-		for i in {1..2};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {3..4};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {5..6};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {7..8};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {9..10};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {11..12};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {13..14};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
-		for i in {15..16};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	To run 8 processes:
+```bash
 
+	for i in {1..2};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {3..4};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {5..6};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {7..8};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {9..10};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {11..12};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {13..14};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+	for i in {15..16};do ../../fs_4.0.1/fs_linux_glibc2.3 chromopainter -g ../chr${i}.chromopainter -r ../chr${i}_rec -t idfile.txt -o cp_chr${i} -a 0 0;done &
+```
 		Obs1: idfile is a tabulated file with the name of each strain and their corresponding population, and whether to include this individual in the calculation. Should have the same order that the VCF and PLINK files. e.g:
 		CL1001.1<TAB>PB1<TAB>1
 
