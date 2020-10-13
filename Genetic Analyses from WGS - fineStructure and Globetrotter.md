@@ -35,8 +35,7 @@ for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr{i}.
 
 ```
 
-## FOR HAPLOIDS
-### USE THIS SCRIPT TO CHANGE CHROMOPAINTER INPUT TO HAPLOID (Example here Lachancea with chromosomes names)
+- **ONLY FOR HAPLOIDS**: USE THIS SCRIPT TO CHANGE CHROMOPAINTER INPUT TO HAPLOID (Example here Lachancea with chromosomes names)
 ```bash
 for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR == 1  { print $1 /2 }' chr${i}.chromopainter; sed '2,3!d' chr${i}.chromopainter;sed '1,3d' chr${i}.chromopainter|sed  '0~2d')| cat > chr${i}.chromopainter.haploid;done
 ```
