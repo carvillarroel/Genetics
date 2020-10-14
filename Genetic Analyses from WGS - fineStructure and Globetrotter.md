@@ -6,6 +6,7 @@ For this the phasing pipeline included in the program GERMLINE (1.5.3) was used,
 Programs:
 ```bash
 conda install snpsift plink
+conda install -c compbiocore perl-switch
 wget https://people.maths.bris.ac.uk/~madjl/finestructure/fs_4.1.1.zip
 wget https://github.com/gusevlab/germline/raw/master/phasing_pipeline.tar.gz <- MAKE ALL inside folder
 wget https://faculty.washington.edu/browning/beagle/recent.versions/beagle_3.0.4_05May09.zip <- JUST NEED TO COPY BEAGLE.JAR TO THE PHASING PIPELINE FOLDER
