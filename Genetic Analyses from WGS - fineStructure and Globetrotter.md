@@ -45,7 +45,7 @@ for i in  LACI0A LACI0B LACI0C LACI0D LACI0E LACI0F LACI0G LACI0H;do (awk 'NR ==
 **Obs: makeuniformrecfile is inside finestructure folder**
 
 ```bash
-for i in {1..16};do perl makeuniformrecfile.pl  chr{i}  chr{i}_rec;done
+for i in {1..16};do perl makeuniformrecfile.pl  chr${i}.chromopainter  chr${i}_rec;done
 ```
 - Run chromopainter (v2) in mode ALLvsALL (all individuals will be painted with each other individual)
 
