@@ -30,7 +30,7 @@ for i in {1..16};do bash run.sh chr${i}.ped chr${i}.map chr${i};done
 - Convert phased files to chromopainter format
 ```bash
 
-for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr{i}.phased.map -o=chr{i}.chromopainter -f;done
+for i in {1..16};do perl plink2chromopainter.pl -p=chr${i}.phased.ped -m=chr${i}.phased.map -o=chr${i}.chromopainter -f;done
 
 ```
 
