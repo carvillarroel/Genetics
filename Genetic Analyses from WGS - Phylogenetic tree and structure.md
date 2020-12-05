@@ -167,7 +167,7 @@ Options that can be added in command line:
 So first we check that everything is ok by doing a test run  (change the parameters to match your file!):
 
 ```bash
-structure -m mainparams -p extraparams -k 2 -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_res_K2_rep1.txt
+structure -m mainparams -p extraparams -K 2 -L 15003 -N 107 -i onlyeub_structure.txt -o onlyeub_structure_res_K2_rep1.txt
 ```
 
 If structure runs without problems, we can cancel the test run to run structure in a loop to generate multiple replicate runs for each value of K that we want to perform. Importantly we need to give some waiting time between runs as structure produces a SEED value from the system clock, and we dont want to use the same seed for the different replicates.
