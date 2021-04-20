@@ -40,9 +40,9 @@ To do so we will run TREEMIX in a loop to test migrations from for example m=0 t
 
 ```bash
 nano treemix_batch.sh
+```
+In nano write:
 
-
----- in NANO --------
 for m in {0..10}
    do
    for i in {1..10}
@@ -57,11 +57,12 @@ for m in {0..10}
       done 
 done
 
-------------------
-```
+
+
+```bash
 
 ./treemix_batch.sh treemix.
-
+```
 7) Now we use the R package OPTM to find the best values of m (https://cran.r-project.org/web/packages/OptM/index.html)
 
 ```R
