@@ -40,8 +40,9 @@ To do so we will run TREEMIX in a loop to test migrations from for example m=0 t
 
 ```bash
 nano treemix_batch.sh
-```
-In nano write:
+
+###
+###In nano write:###
 
 for m in {0..10}
    do
@@ -58,8 +59,7 @@ for m in {0..10}
 done
 
 
-
-```bash
+###Exit Nano###
 
 ./treemix_batch.sh treemix.
 ```
