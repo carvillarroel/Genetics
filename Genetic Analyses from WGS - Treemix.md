@@ -7,7 +7,7 @@ Install TREEMIX using conda
 To perform TREEMIX analysis we will start from the first unfiltered vcf we created and modify it with a series of steps (many of which already used when we created the dataset for STRUCTURE)
 
 As we want to look at old gene flow events, we are not interested in recent gene flow events, then we exclude from this analysis admixed individuals, and we keep preferably "pure" individuals
-1) We will create a tabulated file with the individuals (column 1) that we keep and their corresponding subpopulation (column 2)(ej: PB1-Karukinka), and name it popstacks.txt
+1) We will create a tabulated file with the individuals (column 1) that we keep and their corresponding subpopulation (column 2)(ej: PB1-Karukinka), and name it popstacks.txt. Also another file with only the first column from popstack.txt and name it keep.txt
 
 2) Exclude individuals not analyzed from the vcf using vcftools:
 
@@ -28,7 +28,7 @@ vcftools --vcf treemix_vcf_f1.recode.vcf --positions treemix_ldfilter.prune.in.v
 4) Use STACKS to create a TREEMIX file from the filtered VCF. Here we use the popstacks.txt file we created before
 
 ```bash
-populations -V treemix_vcf_f2.recode.vcf -O treemix -M popstacks2.txt --treemix
+populations -V treemix_vcf_f2.recode.vcf -O treemix -M popstacks.txt --treemix
 ```
 5) Delete the first line of the STACKS output, and gzip it
 ```bash
@@ -101,3 +101,4 @@ dev.off()
 
 }
 ```
+This will produce a consensus tree in PDF with the results of 100 TREEMIX runs with the given value of M (in my case I used m=1)
