@@ -12,10 +12,10 @@ https://sandbox.bio/tutorials?id=viral-amplicon
 
 ### ¿Primera vez con Linux?
  Si es tu primera vez usando la terminal de comandos de Linux, para hacer el análisis debes poner atención a los siguientes puntos:
-1)	Siempre escribir el nombre de cada comando y archivo de forma exacta, respetando espacios, mayúsculas y minúsculas.
-2)	Escribir comandos en una sola línea. Solo presionar Enter al terminar de escribir el comando
-3)	Se puede corregir lo escrito moviendo el cursor con el teclado (no usen el mouse!)
-4)	Se puede pegar texto usando el botón derecho del mouse
+- Siempre escribir el nombre de cada comando y archivo de forma exacta, respetando espacios, mayúsculas y minúsculas.
+- Escribir comandos en una sola línea. Solo presionar Enter al terminar de escribir el comando
+- Se puede corregir lo escrito moviendo el cursor con el teclado (no usen el mouse!)
+- Se puede pegar texto usando el botón derecho del mouse
 
 ### PRIMEROS PASOS
 En plomo se indica que deben escribir en la terminal
@@ -65,6 +65,9 @@ ivar trim -x 5 -e -i sample1_untrimmed.bam -b primers.bed -p sample1_trimmed.uns
 * -b le dice a IVAR el nombre del archivo que contiene información de la posición de los partidores
 * -p  le dice a IVAR que nombre llevará el archivo de salida  (al que IVAR añadirá un .bam)
 
+Informe:
+Leyendo el output en pantalla, ¿Cuantas lecturas caen fuera de las regiones de los partidores? ¿Cuantas lecturas fueron acortadas por estar en una region de un partidor?
+
 10.- IVAR nos produce un nuevo archivo .BAM pero que no esta optimizado, por lo que usamos SAMtools nuevamente para optimizar:
 ```bash
 samtools sort -o sample1_trimmed.sorted.bam sample1_trimmed.unsorted.bam
@@ -99,7 +102,7 @@ cat sample1_pileup.txt | ivar variants -r Wuhan-1.fasta -p sample1_variants.tsv 
 
 14.- Crearemos un archivo FASTA “corregido” con la información del llamado de variantes. Es decir incluiremos las nuevas variantes al genoma de referencia, pero también incluiremos sitios donde no se supo si había o no una variante (DEPTH <10), que es donde se debe agregar una N.
 ```bash
-cat sample1_pileup.txt | ivar consensus -p sample1_consensus.fasta -m 10 -t 0.5 -n N
+cat sample1_pileup.txt | ivar consensus -p sample1_consensus.fa -m 10 -t 0.5 -n N
 ```
 * “cat” sirve para abrir el archivo pileup 
 * “|” este símbolo sirve para enviar el contenido del archivo pileup al programa IVAR
@@ -108,7 +111,7 @@ cat sample1_pileup.txt | ivar consensus -p sample1_consensus.fasta -m 10 -t 0.5 
 * -n N dice a IVAR que cuando no tengamos suficiente información (DEPTH < 10 o t < 0.5) incluir una N (en vez de un nucleótido)
 15.- Para imprimir el archivo fasta en pantalla usar cat
 ```bash
-cat sample1_consensus.fasta
+cat sample1_consensus.fa
 ```
 
 ### ANALIZAR EN NEXTCLADE
@@ -120,17 +123,29 @@ Ahora que tenemos un archivo FASTA con la secuencia de nuestra muestra clínica 
 Para el informe, explicar el resultado que obtuvieron en Nextclade. 
 * ¿En cuantos sitios no se pudo obtener información de la muestra y porque pudo haber sucedido? 
 * ¿Cuantas mutaciones encuentran en comparacion a la cepa original? 
-* ¿Cuantas mutaciones encuentran en comun con el resultado de otra/os compañera/os?
+* Indique al menos tres mutaciones en el gen S (Spike) que produzcan variaciones en la secuencia proteica. 
+* ¿Hay mutaciones en común con el resultado de otra/os compañera/os haya obtenido una variante distinta?
 
 
 ### Bonus:
 Visualizar mapeos en un explorador de genoma
-Para esto necesitamos hacer un paso con samtools:
-samtools index sample1_trimmed.sorted.bam
 
-Abrir este archivo en el programa de Windows IGV (seleccionando el genoma de SARS-CoV-2)
++ + Abrir archivo bam (untrimmed.bam) en https://igv.org/app/ o en el IGV de Windows, seleccionado al genoma de Sars-CoV-2
++ + TRACKS Abrir archivo local
++ + elegir sample1_untrimmed.bam y sample1_untrimmed.bam.bai
 
 
 
+
+### REFERENCIAS 
+
+MINIMAP2
+https://academic.oup.com/bioinformatics/article/34/18/3094/4994778
+
+IVAR
+https://andersen-lab.github.io/ivar/html/manualpage.html
+
+NEXTCLADE
+Aksamentov, I., Roemer, C., Hodcroft, E. B., & Neher, R. A., (2021). Nextclade: clade assignment, mutation calling and quality control for viral genomes. Journal of Open Source Software, 6(67), 3773, https://doi.org/10.21105/joss.03773
 
 
