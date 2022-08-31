@@ -36,17 +36,17 @@ ls
 
 3.- En la carpeta debe estar el genoma de referencia (Wuhan-1.fasta), archivos fastq de secuenciación masiva (extensión “.fastq.gz”), y un archivo con información de partidores (primers.bed).
 ### ANALISIS DE CALIDAD
-4.- Comenzaremos el análisis con la muestra Sample1. Esta muestra se secuenció con lecturas pareadas (paired-end) por lo tanto encontramos dos archivos : sample1_1.fastq.gz y sample2_2.fastq.gz
+4.- Comenzaremos el análisis con la muestra Sample 1. Esta muestra se secuenció con lecturas pareadas (paired-end) por lo tanto encontramos dos archivos : sample1_1.fastq.gz y sample1_2.fastq.gz
 
 5.- Haremos una visualización de la calidad de secuenciación con el programa FASTQC
 ```bash
-fastqc sample1_1.fastq sample2_2.fastq
+fastqc sample1_1.fastq sample1_2.fastq
 ```
 6.- Este análisis produce dos archivos html (uno para cada fastq), estos se pueden encontrar usando el Explorador de Windows, y abriendo los archivos html en Chrome o Firefox. (Informe : Indicar número de lecturas, mencionar calidad de la secuenciación)
 ### MAPEO DE SECUENCIAS
  7.- Para mapear las secuencias fastq al genoma de referencia utilizaremos el programa minimap2
 ```bash
-minimap2 -a -x  sr -o sample1.sam  Wuhan-1.fasta sample1_1.fastq.gz sample1_1.fastq.gz
+minimap2 -a -x  sr -o sample1.sam  Wuhan-1.fasta sample1_1.fastq.gz sample1_2.fastq.gz
 ```
 * -a dice a minimap2 que queremos el output en formato SAM
 * -x sr dice a minimap2 que queremos optimizar el programa para usar short-reads (porque nuestras reads vienen de Illumina)
