@@ -1,7 +1,14 @@
 # Trabajo práctico N ° 2 – Genómica
 
-En este práctico se analizarán secuenciaciones de genoma completo de SARS-CoV-2 obtenidas con el método de amplicones y secuenciadas en un equipo Illumina.  
+En este práctico se analizarán secuenciaciones de genoma completo de SARS-CoV-2 obtenidas con el método de amplicones y secuenciadas en un equipo Illumina. 
+
 Se realizarán los análisis en LINUX usando la aplicación disponible para Windows 10 (Windows Linux Subsystem).
+
+Este practico esta basado en el tutorial de la plataforma de aprendizaje de bioinformatica en Linux SANDBOX.BIO
+
+Pueden acceder a practicar, rehacer el analisis, o aprender nuevas cosas en:
+
+https://sandbox.bio/tutorials?id=viral-amplicon
 
 ### ¿Primera vez con Linux?
  Si es tu primera vez usando la terminal de comandos de Linux, para hacer el análisis debes poner atención a los siguientes puntos:
@@ -106,14 +113,14 @@ cat sample1_consensus.fasta
 
 ### ANALIZAR EN NEXTCLADE
 Ahora que tenemos un archivo FASTA con la secuencia de nuestra muestra clínica de SARS-CoV-2, podemos analizar si corresponde a una variante usando el sitio nextclade
-Ir a https://clades.nextstrain.org/
-Subir archivo .fasta (revisar en el Explorador de Windows, disco D)
-Run
+* Ir a https://clades.nextstrain.org/
+* Subir archivo .fasta (revisar en el Explorador de Windows, disco D)
+* Run
 
 Para el informe, explicar el resultado que obtuvieron en Nextclade. 
-¿En cuantos sitios no se pudo obtener información de la muestra y porque pudo haber sucedido? 
-¿Cuantas mutaciones encuentran en comparacion a la cepa original? 
-¿Cuantas mutaciones encuentran en comun con el resultado de otra/os compañera/os?
+* ¿En cuantos sitios no se pudo obtener información de la muestra y porque pudo haber sucedido? 
+* ¿Cuantas mutaciones encuentran en comparacion a la cepa original? 
+* ¿Cuantas mutaciones encuentran en comun con el resultado de otra/os compañera/os?
 
 
 ### Bonus:
