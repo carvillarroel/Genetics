@@ -1,5 +1,8 @@
 # Trabajo práctico N ° 2 – Genómica
 
+Para visualizar mejor esta guía, visitar :
+https://github.com/carvillarroel/Genetics/blob/master/Practico_genomica.md
+
 En este práctico se analizarán secuenciaciones de genoma completo de SARS-CoV-2 obtenidas con el método de amplicones y secuenciadas en un equipo Illumina. 
 
 Se realizarán los análisis en LINUX usando la aplicación disponible para Windows 10 (Windows Linux Subsystem).
