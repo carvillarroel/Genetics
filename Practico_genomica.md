@@ -29,9 +29,9 @@ ls
 4.- Comenzaremos el análisis con la muestra Sample1. Esta muestra se secuenció con lecturas pareadas (paired-end) por lo tanto encontramos dos archivos : sample1_1.fastq.gz y sample2_2.fastq.gz
 5.- Haremos una visualización de la calidad de secuenciación con el programa FASTQC
 ```bash
-fastqc sample1_1.fastqc sample2_2.fastqc
+fastqc sample1_1.fastq sample2_2.fastq
 ```
-6.- Este análisis produce dos archivos html (uno para cada fastq), estos se pueden encontrar usando el Explorador de Windows, y abriendo los archivos html en Chrome o Firefox.
+6.- Este análisis produce dos archivos html (uno para cada fastq), estos se pueden encontrar usando el Explorador de Windows, y abriendo los archivos html en Chrome o Firefox. (Informe : Indicar número de lecturas, mencionar calidad de la secuenciación)
 ### MAPEO DE SECUENCIAS
  7.- Para mapear las secuencias fastq al genoma de referencia utilizaremos el programa minimap2
 ```bash
@@ -40,7 +40,7 @@ minimap2 -a -x  sr -o sample1.sam  Wuhan-1.fasta sample1_1.fastq.gz sample1_1.fa
 * -a dice a minimap2 que queremos el output en formato SAM
 * -x sr dice a minimap2 que queremos optimizar el programa para usar short-reads (porque nuestras reads vienen de Illumina)
 
-8.- Este programa nos produce un archivo de texto con información de los mapeos del tipo SAM, que debe ser optimizado para el uso posterior por otros programas, por lo que lo transformamos a BAM usando SAMtools
+8.- Este programa nos produce un archivo de texto con información de los mapeos del tipo SAM, que debe ser optimizado para el uso posterior por otros programas, por lo que lo transformamos a BAM usando SAMtools (Informe : Indicar los tamaños de los archivo SAM y BAM usando "ls -lh")
 ```bash
 samtools sort -o sample1_untrimmed.bam sample1.sam
 ```
@@ -110,12 +110,19 @@ Ir a https://clades.nextstrain.org/
 Subir archivo .fasta (revisar en el Explorador de Windows, disco D)
 Run
 
+Para el informe, explicar el resultado que obtuvieron en Nextclade. 
+¿En cuantos sitios no se pudo obtener información de la muestra y porque pudo haber sucedido? 
+¿Cuantas mutaciones encuentran en comparacion a la cepa original? 
+¿Cuantas mutaciones encuentran en comun con el resultado de otra/os compañera/os?
+
+
 ### Bonus:
 Visualizar mapeos en un explorador de genoma
 Para esto necesitamos hacer un paso con samtools:
 samtools index sample1_trimmed.sorted.bam
 
 Abrir este archivo en el programa de Windows IGV (seleccionando el genoma de SARS-CoV-2)
+
 
 
 
