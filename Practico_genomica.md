@@ -21,11 +21,11 @@ https://sandbox.bio/tutorials?id=viral-amplicon
 - Se puede pegar texto usando el botón derecho del mouse
 
 ### PRIMEROS PASOS
-En plomo se indica que deben escribir en la terminal
-1.-  Al iniciar el práctico, verificar si están en la carpeta que contiene los archivos a utilizar (/mnt/d/genomica)
+En los recuadros grises se indica lo que deben escribir en la terminal
+
+1.-  Primero verificar si están en la carpeta que contiene los archivos a utilizar /mnt/d/genomica
 
 ```bash
-
 pwd
 ```
 
@@ -34,9 +34,10 @@ pwd
 ls
 ```
 
-3.- En la carpeta debe estar el genoma de referencia (Wuhan-1.fasta), archivos fastq de secuenciación masiva (extensión “.fastq.gz”),y un archivo con información de partidores (primers.bed).
+3.- En la carpeta debe estar el genoma de referencia (Wuhan-1.fasta), archivos fastq de secuenciación masiva (extensión “.fastq.gz”), y un archivo con información de partidores (primers.bed).
 ### ANALISIS DE CALIDAD
 4.- Comenzaremos el análisis con la muestra Sample1. Esta muestra se secuenció con lecturas pareadas (paired-end) por lo tanto encontramos dos archivos : sample1_1.fastq.gz y sample2_2.fastq.gz
+
 5.- Haremos una visualización de la calidad de secuenciación con el programa FASTQC
 ```bash
 fastqc sample1_1.fastq sample2_2.fastq
@@ -88,6 +89,7 @@ samtools mpileup -A -aa -d 0 -Q 0 --reference  Wuhan-1.fasta sample1_trimmed.sor
 * -Q 0 dice  a samtools que no haga filtros de calidad 
 * --reference le decimos donde esta nuestro archivo de referencia
 * “>” con este símbolo le decimos que el output lo deje en este archivo “sample1_pileup.txt”
+
 12.- Podemos visualizar las primeras 5 líneas del output con el comando head
 ```bash
 head -n 5  sample1_pileup.txt
