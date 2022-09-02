@@ -40,7 +40,7 @@ ls
 
 5.- Haremos una visualización de la calidad de secuenciación con el programa FASTQC
 ```bash
-fastqc sample1_1.fastq sample1_2.fastq
+fastqc sample1_1.fastq.gz sample1_2.fastq.gz
 ```
 6.- Este análisis produce dos archivos html (uno para cada fastq), estos se pueden encontrar usando el Explorador de Windows, y abriendo los archivos html en Chrome o Firefox. (Informe : Indicar número de lecturas, mencionar calidad de la secuenciación)
 ### MAPEO DE SECUENCIAS
