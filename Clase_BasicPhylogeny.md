@@ -1,31 +1,43 @@
 
 ## Primero creamos el ambiente de conda con las herramientas bioinformaticas a usar
-
+```bash
 mamba create -n phylogeny -c bioconda blast mafft trimal iqtree seqkit
-
+```
 ## Para crear una base de datos local, primero buscamos todas las proteinas del orden de virus llamado lefavirales usando la API de NCBI
+```bash
 esearch -db protein -query "lefavirales [ORGN]"| efetch -format acc > accession_list.txt
-
+```
 ## Las descargamos con un "for loop"
+```bash
 for i in $(cat accession_list.txt); do efetch -db protein -id $i -format fasta >> lefavirales_proteins.fasta;done
+```
 
 ## Creamos la base de datos local
+```bash
 
 makeblastdb -in lefavirales_proteins.fasta -dbtype prot
+```
 
 ## Buscamos nuestra proteina en la base de datos, por defecto nos da un resultado en formato largo de texto:
+```bash
 
 blastp -query query.fasta -db lefavirales_proteins.fasta
-
+```
 ## 
 
 
 ## Para tener un resultado que se pueda trabajar en Excel (tabulado) usamos el outfmt "6"
+```bash
+
 blastp -query query.fasta -db lefavirales_proteins.fasta -outfmt 6 
+```
 
 ## De esta forma nos muestra en cada columna estos datos:
-qseqid qlen qstart qend sseqid slen sstart send evalue bitscore
 
+```bash
+
+qseqid qlen qstart qend sseqid slen sstart send evalue bitscore
+```
 
 ## Podemos elegir mas o menos datos que mostrar segun esta lista de opciones:
          qseqid means Query Seq-id
@@ -85,15 +97,24 @@ qseqid qlen qstart qend sseqid slen sstart send evalue bitscore
 
 
 ## Trabajemos con esta lista ahora:
+```bash
 
 blastp -query query.fasta -db DATABSE -evalue 1e-50 -outfmt "6 qseqid qlen qstart qend sseqid slen sstart send evalue bitscore pident stitle"
-
+```
 
 ## Ahora si queremos rescatar los archivos fasta de los HITS de blast para hacer un alineamiento usamos SEQKIT
 ## Primero copiemos la columna con el "sseqid" en un nuevo archivo de texto que llamaremos dnapol_genes.txt
+```bash
+
 blastp -query query.fasta -db lefavirales_proteins.fasta -evalue 1e-50 -outfmt "6 qseqid qlen qstart qend sseqid slen sstart send evalue bitscore pident stitle"| awk '{print $5}' > dnapol_list.txt
-seqkit faidx -l dnapol_list.txt lefavirales_proteins.fasta > dnapol_proteins.fasta
+uniq dnapol_list.txt > dnapol_list_unique.txt
+seqkit faidx -l dnapol_list_unique.txt  lefavirales_proteins.fasta > dnapol_proteins.fasta
+```
 
-## A este archivo fasta le agregamos el query y para luego alinear con MAFFT
+## A este archivo fasta le agregamos el QUERY y para realizar la filogenia con MAFFT, TRIMAL, y IQTREE
+```bash
 
-
+mafft dnapol_proteins.fasta > dnapol_al.fasta
+trimal -phylip -in dnapol_al.fasta -out dnapol_trimal.phy
+iqtree2 -s dnapol_trimal.phy
+```
