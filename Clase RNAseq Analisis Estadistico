@@ -13,7 +13,7 @@ colnames(rnaseq_counts) = c("WExNA_R1_HIGH_N","WExNA_R2_HIGH_N",
                             "WExNA_R3_HIGH_N",
                             "WExNA_R1_LOW_N","WExNA_R2_LOW_N","WExNA_R3_LOW_N")
 
-experiment = data.frame(condition=factor(rep(c("HIGH_N","LOW_N"),each=3),levels = c("HIGH_N","LOW_N")))
+experiment = data.frame(replicate=c(c(1:3),c(1:3)) ,condition=factor(rep(c("HIGH_N","LOW_N"),each=3),levels = c("HIGH_N","LOW_N")))
 
 ## DESeq  ##
 
@@ -23,7 +23,7 @@ dds<-DESeqDataSetFromMatrix(rnaseq_counts,
 
 dds<-DESeq(dds)
 dds_rlog<-rlog(dds)
-plotPCA(dds_rlog)+theme_bw()
+plotPCA(dds_rlog)+theme_bw()+geom_label_repel(label=str_c(experiment$replicate,"_",experiment$condition))
 
 res_dds<-results(dds,alpha = 0.05)
 summary(res_dds)
