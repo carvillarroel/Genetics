@@ -25,6 +25,12 @@ dds<-DESeq(dds)
 dds_rlog<-rlog(dds)
 plotPCA(dds_rlog)+theme_bw()+geom_label_repel(label=str_c(experiment$replicate,"_",experiment$condition))
 
+
+par(mfrow=c(1,2))
+boxplot(log2(counts(dds, normalized=FALSE)+1), main="Raw counts", col=rep(c("lightblue","lightgreen"), each=2), ylim = c(0, 15),las=2)
+boxplot(log2(counts(dds, normalized=TRUE)+1), main="Normalized counts", col=rep(c("lightblue","lightgreen"), each=2), ylim = c(0, 15),las=2)
+
+
 res_dds<-results(dds,alpha = 0.05)
 summary(res_dds)
 
@@ -75,7 +81,5 @@ rownames(data.frame(res_dds))[DEGSDOWN] %>% write_lines("DEGSDOWN.txt")
 #
 pheatmap(counts(dds, normalized=T)[DEGSDOWN,], cluster_rows=TRUE, show_rownames=TRUE, cluster_cols=TRUE,scale = "row",fontsize_row = 4,main="Hierarchical cluster",border_color = NA)
 
-par(mfrow=c(1,2))
-boxplot(log2(counts(dds, normalized=FALSE)+1), main="Raw counts", col=rep(c("lightblue","lightgreen"), each=2), ylim = c(0, 15),las=2)
-boxplot(log2(counts(dds, normalized=TRUE)+1), main="Normalized counts", col=rep(c("lightblue","lightgreen"), each=2), ylim = c(0, 15),las=2)
+
 ```
