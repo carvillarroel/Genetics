@@ -1,0 +1,81 @@
+library(tidyverse)
+library(DESeq2)
+library(pheatmap)
+library(ggrepel)
+
+fcResults_RNA <- read_table(file = "counts.tsv",comment = "#")
+fcResults_RNA
+
+rnaseq_counts = data.frame(fcResults_RNA[,7:12],
+                           row.names = fcResults_RNA$Geneid)
+
+colnames(rnaseq_counts) = c("WExNA_R1_HIGH_N","WExNA_R2_HIGH_N",
+                            "WExNA_R3_HIGH_N",
+                            "WExNA_R1_LOW_N","WExNA_R2_LOW_N","WExNA_R3_LOW_N")
+
+experiment = data.frame(condition=factor(rep(c("HIGH_N","LOW_N"),each=3),levels = c("HIGH_N","LOW_N")))
+
+## DESeq  ##
+
+dds<-DESeqDataSetFromMatrix(rnaseq_counts,
+                            colData = experiment,
+                            design = ~condition)
+
+dds<-DESeq(dds)
+dds_rlog<-rlog(dds)
+plotPCA(dds_rlog)+theme_bw()
+
+res_dds<-results(dds,alpha = 0.05)
+summary(res_dds)
+
+
+plotMA(res_dds,ylim=c(-2,2),alpha=0.05,main="MA-plot raw values")
+
+
+data.frame(res_dds,geneid=rownames(res_dds)) %>%
+  dplyr::select(geneid,log2FoldChange,padj) %>%
+  mutate(threshold=ifelse(padj < 0.05 & log2FoldChange > 3 ,4,
+                       ifelse(padj < 0.05 & log2FoldChange <(-3) ,3,
+                              ifelse(padj < 0.05 & (log2FoldChange<3)   & log2FoldChange > 1 ,2,
+                                     ifelse(padj < 0.05 & log2FoldChange <(-1.5) & log2FoldChange > -3 ,1,0))))) %>%
+  ggplot(aes(x=log2FoldChange,y=-log10(padj),fill=as.factor(threshold)))+
+  geom_point(size=1,shape=21,alpha=0.9)+
+  ggtitle("DEGs") +
+  xlab("log2 fold change") +
+  ylab("-log10 adjusted p-value") +
+  scale_fill_manual(values=c("0"= "grey",
+                             "1"="royalblue4",
+                             "2"="firebrick4",
+                             "3"="royalblue1",
+                             "4"="firebrick1"))+
+  geom_text_repel(size=3,
+                  aes(x = log2FoldChange, y = -log10(padj),
+                      label = ifelse(threshold > 2,as.character(geneid),"")))+
+  geom_abline(slope=0,intercept = 0)+
+  geom_vline(xintercept = 0)+
+  theme_classic()+
+  theme(axis.title.y = element_text(color = "black",size = 12, vjust = 1.5, face=3),
+        axis.title.x = element_text(color = "black",size = 12, vjust = 1.5, face=3),
+        legend.position = "none",
+        axis.line = element_line(size=1),
+        plot.title = element_text(size = 15, face = 3, hjust = 0.5),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) 
+
+
+
+DEGSUP<-which(res_dds$padj<0.05&res_dds$log2FoldChange > 2)
+DEGSDOWN<-which(res_dds$padj<0.05&res_dds$log2FoldChange < -2)
+
+rownames(data.frame(res_dds))[DEGSUP] %>% write_lines("DEGSUP.txt")
+rownames(data.frame(res_dds))[DEGSDOWN] %>% write_lines("DEGSDOWN.txt")
+
+
+
+#
+pheatmap(counts(dds, normalized=T)[DEGSDOWN,], cluster_rows=TRUE, show_rownames=TRUE, cluster_cols=TRUE,scale = "row",fontsize_row = 4,main="Hierarchical cluster",border_color = NA)
+
+par(mfrow=c(1,2))
+boxplot(log2(counts(dds, normalized=FALSE)+1), main="Raw counts", col=rep(c("lightblue","lightgreen"), each=2), ylim = c(0, 15),las=2)
+boxplot(log2(counts(dds, normalized=TRUE)+1), main="Normalized counts", col=rep(c("lightblue","lightgreen"), each=2), ylim = c(0, 15),las=2)
+```
