@@ -3,13 +3,13 @@
 ```bash
 mamba create -n phylogeny -c bioconda blast mafft trimal iqtree seqkit
 ```
-## Para crear una base de datos local, primero buscamos todas las proteinas del orden de virus llamado lefavirales usando la API de NCBI
+## Para crear una base de datos local, primero buscamos todas las proteinas del orden de virus llamado Nudiviridae usando la API de NCBI
 ```bash
-esearch -db protein -query "lefavirales [ORGN]"| efetch -format acc > accession_list.txt
+esearch -db protein -query "Nudiviridae [ORGN]"| efetch -format acc > accession_list.txt
 ```
-## Las descargamos con un "for loop"
+## Las descargamos con un EFETCH
 ```bash
-for i in $(cat accession_list.txt); do efetch -db protein -id $i -format fasta >> lefavirales_proteins.fasta;done
+efetch -db protein -input accession_list.txt  -format fasta > nudivirus_proteins.fasta
 ```
 
 ## Creamos la base de datos local
@@ -118,3 +118,4 @@ mafft dnapol_proteins.fasta > dnapol_al.fasta
 trimal -phylip -in dnapol_al.fasta -out dnapol_trimal.phy
 iqtree2 -s dnapol_trimal.phy
 ```
+
