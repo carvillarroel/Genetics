@@ -15,13 +15,13 @@ efetch -db protein -input accession_list.txt  -format fasta > nudivirus_proteins
 ## Creamos la base de datos local
 ```bash
 
-makeblastdb -in lefavirales_proteins.fasta -dbtype prot
+makeblastdb -in nudivirus_proteins.fasta -dbtype prot
 ```
 
 ## Buscamos nuestra proteina en la base de datos, por defecto nos da un resultado en formato largo de texto:
 ```bash
 
-blastp -query query.fasta -db lefavirales_proteins.fasta
+blastp -query query.fasta -db nudivirus_proteins.fasta
 ```
 ## 
 
@@ -29,7 +29,7 @@ blastp -query query.fasta -db lefavirales_proteins.fasta
 ## Para tener un resultado que se pueda trabajar en Excel (tabulado) usamos el outfmt "6"
 ```bash
 
-blastp -query query.fasta -db lefavirales_proteins.fasta -outfmt 6 
+blastp -query query.fasta -db nudivirus_proteins.fasta -outfmt 6 
 ```
 
 ## De esta forma nos muestra en cada columna estos datos:
@@ -99,7 +99,7 @@ qseqid qlen qstart qend sseqid slen sstart send evalue bitscore
 ## Trabajemos con esta lista ahora:
 ```bash
 
-blastp -query query.fasta -db DATABSE -evalue 1e-50 -outfmt "6 qseqid qlen qstart qend sseqid slen sstart send evalue bitscore pident stitle"
+blastp -query query.fasta -db nudivirus_proteins.fasta -evalue 1e-50 -outfmt "6 qseqid qlen qstart qend sseqid slen sstart send evalue bitscore pident stitle"
 ```
 
 ## Ahora si queremos rescatar los archivos fasta de los HITS de blast para hacer un alineamiento usamos SEQKIT
@@ -118,4 +118,5 @@ mafft dnapol_proteins.fasta > dnapol_al.fasta
 trimal -phylip -in dnapol_al.fasta -out dnapol_trimal.phy
 iqtree2 -s dnapol_trimal.phy
 ```
+
 
