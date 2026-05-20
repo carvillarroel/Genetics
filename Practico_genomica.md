@@ -23,11 +23,22 @@ https://sandbox.bio/tutorials?id=viral-amplicon
 ### PRIMEROS PASOS
 En los recuadros grises se indica lo que deben escribir en la terminal
 
-1.-  Primero verificar si están en la carpeta que contiene los archivos a utilizar /mnt/d/genomica
+1.-  Descargar el genoma de referencia Wuhan-1.fasta y un archivo de "Sample" de la siguiente lista:
 
-```bash
-pwd
-```
+Wuhan-1.fasta	https://zenodo.org/records/10992901/files/Wuhan-1.fasta?download=1
+Sample1 R1	https://zenodo.org/records/10992901/files/sample1_1.fastq.gz?download=1
+Sample1 R2	https://zenodo.org/records/10992901/files/sample1_2.fastq.gz?download=1
+Sample2 R1	https://zenodo.org/records/10992901/files/sample2_1.fastq.gz?download=1
+Sample2 R2	https://zenodo.org/records/10992901/files/sample2_2.fastq.gz?download=1
+Sample3 R1	https://zenodo.org/records/10992901/files/sample3_1.fastq.gz?download=1
+Sample3 R2	https://zenodo.org/records/10992901/files/sample3_2.fastq.gz?download=1
+Sample4 R1	https://zenodo.org/records/10992901/files/sample4_1.fastq.gz?download=1
+Sample4 R2	https://zenodo.org/records/10992901/files/sample4_2.fastq.gz?download=1
+Sample5 R1	https://zenodo.org/records/10992901/files/sample5_1.fastq.gz?download=1
+Sample5 R2	https://zenodo.org/records/10992901/files/sample5_2.fastq.gz?download=1
+Sample6 R1	https://zenodo.org/records/10992901/files/sample6_1.fastq.gz?download=1
+Sample6 R2	https://zenodo.org/records/10992901/files/sample6_2.fastq.gz?download=1
+
 
 2.- Para ver que archivos hay en la carpeta, usar el comando ls
 ```bash
