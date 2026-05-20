@@ -27,18 +27,18 @@ En los recuadros grises se indica lo que deben escribir en la terminal
 | Name  | Link |
 | ------------- | ------------- |
 | Wuhan-1.fasta  | https://zenodo.org/records/10992901/files/Wuhan-1.fasta  |
-| Sample1 R1  | https://zenodo.org/records/10992901/files/sample1_1.fastq.gz  |
-| Sample1 R2	| https://zenodo.org/records/10992901/files/sample1_2.fastq.gz |
-| Sample2 R1	| https://zenodo.org/records/10992901/files/sample2_1.fastq.gz |
-| Sample2 R2	| https://zenodo.org/records/10992901/files/sample2_2.fastq.gz |
-| Sample3 R1	| https://zenodo.org/records/10992901/files/sample3_1.fastq.gz |
-| Sample3 R2	| https://zenodo.org/records/10992901/files/sample3_2.fastq.gz |
-| Sample4 R1	| https://zenodo.org/records/10992901/files/sample4_1.fastq.gz |
-| Sample4 R2	| https://zenodo.org/records/10992901/files/sample4_2.fastq.gz |
-| Sample5 R1	| https://zenodo.org/records/10992901/files/sample5_1.fastq.gz |
-| Sample5 R2	| https://zenodo.org/records/10992901/files/sample5_2.fastq.gz |
-| Sample6 R1	| https://zenodo.org/records/10992901/files/sample6_1.fastq.gz |
-| Sample6 R2	| https://zenodo.org/records/10992901/files/sample6_2.fastq.gz |
+| Sample1 _1  | https://zenodo.org/records/10992901/files/sample1_1.fastq.gz  |
+| Sample1 _2	| https://zenodo.org/records/10992901/files/sample1_2.fastq.gz |
+| Sample2 _1	| https://zenodo.org/records/10992901/files/sample2_1.fastq.gz |
+| Sample2 _2	| https://zenodo.org/records/10992901/files/sample2_2.fastq.gz |
+| Sample3 _1	| https://zenodo.org/records/10992901/files/sample3_1.fastq.gz |
+| Sample3 _2	| https://zenodo.org/records/10992901/files/sample3_2.fastq.gz |
+| Sample4 _1	| https://zenodo.org/records/10992901/files/sample4_1.fastq.gz |
+| Sample4 _2	| https://zenodo.org/records/10992901/files/sample4_2.fastq.gz |
+| Sample5 _1	| https://zenodo.org/records/10992901/files/sample5_1.fastq.gz |
+| Sample5 _2	| https://zenodo.org/records/10992901/files/sample5_2.fastq.gz |
+| Sample6 _1	| https://zenodo.org/records/10992901/files/sample6_1.fastq.gz |
+| Sample6 _2	| https://zenodo.org/records/10992901/files/sample6_2.fastq.gz |
 
 
 2.- Para ver que archivos hay en la carpeta, usar el comando ls
