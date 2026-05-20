@@ -24,6 +24,11 @@ https://sandbox.bio/tutorials?id=viral-amplicon
 En los recuadros grises se indica lo que deben escribir en la terminal
 
 1.-  Descargar el genoma de referencia Wuhan-1.fasta y un archivo de "Sample" de la siguiente lista:
+| Name  | Link |
+| ------------- | ------------- |
+| Wuhan-1.fasta  | https://zenodo.org/records/10992901/files/Wuhan-1.fasta  |
+| Sample1 R1  | https://zenodo.org/records/10992901/files/sample1_1.fastq.gz  |
+
 
 | Wuhan-1.fasta	| https://zenodo.org/records/10992901/files/Wuhan-1.fasta |
 | Sample1 R1	| https://zenodo.org/records/10992901/files/sample1_1.fastq.gz |
