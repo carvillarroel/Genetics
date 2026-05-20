@@ -28,10 +28,6 @@ En los recuadros grises se indica lo que deben escribir en la terminal
 | ------------- | ------------- |
 | Wuhan-1.fasta  | https://zenodo.org/records/10992901/files/Wuhan-1.fasta  |
 | Sample1 R1  | https://zenodo.org/records/10992901/files/sample1_1.fastq.gz  |
-
-
-| Wuhan-1.fasta	| https://zenodo.org/records/10992901/files/Wuhan-1.fasta |
-| Sample1 R1	| https://zenodo.org/records/10992901/files/sample1_1.fastq.gz |
 | Sample1 R2	| https://zenodo.org/records/10992901/files/sample1_2.fastq.gz |
 | Sample2 R1	| https://zenodo.org/records/10992901/files/sample2_1.fastq.gz |
 | Sample2 R2	| https://zenodo.org/records/10992901/files/sample2_2.fastq.gz |
