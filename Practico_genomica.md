@@ -40,6 +40,8 @@ En los recuadros grises se indica lo que deben escribir en la terminal
 | Sample6 _1	| https://zenodo.org/records/10992901/files/sample6_1.fastq.gz |
 | Sample6 _2	| https://zenodo.org/records/10992901/files/sample6_2.fastq.gz |
 
+https://zenodo.org/records/20434694/files/primers.bed?download=1
+
 # Instalar programas #
 ```bash
 mamba install -c bioconda samtools minimap2 ivar 
